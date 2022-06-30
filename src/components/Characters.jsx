@@ -2,10 +2,13 @@
  * Character componet
 */
 // React
-import React, { useState, useEffect, useReducer, useMemo, useRef } from "react";
+import React, { useState, useEffect, useReducer, useMemo, useRef, useCallback } from "react";
 
 // Css
 import "../css/Characters.css"
+
+// Components
+import Search from "./Search";
 
 const API_URL = "https://rickandmortyapi.com/api"
 const ENDPOINT_CHARACTERS = "/character/"
@@ -44,9 +47,13 @@ const Characters = () => {
     }
 
     // useMemo example
-    const handleSearch = () => {
+    /* const handleSearch = () => {
         setSearch(searchInput.current.value)
-    }
+    } */
+
+    const handleSearch = useCallback(() => {
+        setSearch(searchInput.current.value)
+    }, [])
 
     /* const filteredUsers = characters.filter((user) => {
         return user.name.toLowerCase().includes(search.toLowerCase());
@@ -69,13 +76,10 @@ const Characters = () => {
                 ))}
             </ul>
 
-            <div className="search">
-                <input 
-                    type="text" 
-                    value={search} 
-                    onChange={handleSearch}
-                    ref={searchInput} />
-            </div>
+            <Search 
+                search={search} 
+                handleSearch={handleSearch}
+                searchInput={searchInput} />
 
             {filteredUsers.map((character) => (
                 <div className="character" key={character.id}>
