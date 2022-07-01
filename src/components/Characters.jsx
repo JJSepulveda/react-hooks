@@ -34,8 +34,7 @@ const Characters = () => {
     const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
     const [search, setSearch] = useState('');
     const searchInput = useRef(null)
-
-    // useEffect(funciona_anonima, variable_que_escucha)
+    
     const characters = useCharacters(API_URL + ENDPOINT_CHARACTERS)
 
     const handleClick = favorite => {

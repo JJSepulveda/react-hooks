@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// useEffect(funciona_anonima, variable_que_escucha)
 const useCharacters = (url) => {
     const [characters, setCharacters] = useState([]);
 
